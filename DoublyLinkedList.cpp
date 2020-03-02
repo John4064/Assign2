@@ -63,6 +63,8 @@ DoublyLinkedList::~DoublyLinkedList() //destructor
         delete p;
         p = p->next;
     }
+    delete m_head;
+    delete m_tail;
 }
 
 //add to to the end of the list
@@ -71,6 +73,16 @@ void DoublyLinkedList::append(char data)
     //..............
     // TODO
     //..............
+    Node* temp = new Node(data);
+    temp->previous = m_tail;
+    temp->next = nullptr;
+    m_tail->next = temp;
+    m_tail = temp;
+
+    //Setting the header back to the tail
+    //tail to the head
+    m_head->previous = m_tail;
+    m_tail->next = m_head;
 }
 
 //add to the beginning of the list
@@ -79,6 +91,14 @@ void DoublyLinkedList::prepend(char data)
     //..............
     // TODO
     //..............
+    Node* temp = new Node(data);
+    //setting the new nodes previous and next
+    temp->previous = m_tail;
+    temp->next = m_head;
+    //old head before points to new
+    m_head->previous = temp;
+    m_head = temp;
+    m_tail->next = m_head;
 }
 
 //add to the middle of the list (index = 0) means insert at the beginning of the list
