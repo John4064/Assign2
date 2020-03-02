@@ -107,6 +107,18 @@ void DoublyLinkedList::insert(int index, char data)
     //..............
     // TODO
     //..............
+    Node* temp = new Node(data);
+    Node* p = m_head;
+    if(index == 0){
+        prepend(data);
+    }else{
+        for(int i = 0;i<index;i++){
+            p= p->next;
+        }
+        temp->previous = p->previous;
+        temp->next = p;
+    }
+
 }
 
 //remove from the end of the list
