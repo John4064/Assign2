@@ -58,6 +58,11 @@ DoublyLinkedList::~DoublyLinkedList() //destructor
     //..............
     // TODO
     //..............
+    Node *p = m_head;
+    while(p != nullptr){
+        delete p;
+        p = p->next;
+    }
 }
 
 //add to to the end of the list
@@ -90,6 +95,7 @@ void DoublyLinkedList::removeLast()
     //..............
     // TODO
     //..............
+
 }
 
 //remove from the beginning of the list
