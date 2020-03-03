@@ -127,6 +127,10 @@ void DoublyLinkedList::removeLast()
     //..............
     // TODO
     //..............
+    m_tail = nullptr;
+    m_tail = m_tail->previous;
+    m_tail->next = m_head;
+    m_head->previous = m_tail;
 
 }
 
@@ -136,6 +140,10 @@ void DoublyLinkedList::removeFirst()
     //..............
     // TODO
     //..............
+    m_head = nullptr;
+    m_head = m_head->next;
+    m_head->previous = m_tail;
+    m_tail->next = m_head;
 }
 
 //remove from a specific position in the list
