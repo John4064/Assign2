@@ -124,7 +124,7 @@ void DoublyLinkedList::insert(int index, char data)
 	Node* temp = new Node(data);
 	Node* p = m_head;
 	if (index == 0) {
-		prepend(data);
+		append(data);
 	}
 	else {
 		for (int i = 0; i < index; i++) {
@@ -194,6 +194,7 @@ char DoublyLinkedList::get(int index) const
 	for (int i = 0; i < index; i++) {
 		p = p->next;
 	}
+	delete p;
 	return p->data;
 }
 
@@ -224,10 +225,14 @@ int DoublyLinkedList::findFirstOf(char search_char) const
 //find the last occurence of "search_char" in the linked list and return its position. Return -1 if the character is not found.
 int DoublyLinkedList::findLastOf(char search_char) const
 {
-	//..............
-	// TODO
-	//..............
-	return 0;
+	int ind = getSize();
+	Node *p = m_tail;
+	while (p->data != search_char) {
+		p = p->previous;
+		ind--;
+	}
+	delete p;
+	return ind;
 }
 
 //functions that you do NOT have to implement
