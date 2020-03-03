@@ -167,6 +167,16 @@ void DoublyLinkedList::removeAt(int index)
 	//..............
 	// TODO
 	//..............
+	Node *p = m_head;
+	if (index == 0) {
+		removeFirst();
+	}
+	else {
+		for (int i = 0; i < index; i++) {
+			p = p->next;
+		}
+	}
+	
 }
 
 //remove all nodes from the linked list
