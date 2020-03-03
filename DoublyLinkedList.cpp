@@ -211,7 +211,14 @@ int DoublyLinkedList::findFirstOf(char search_char) const
 	//..............
 	// TODO
 	//..............
-	return 0;
+	int ind = 0;
+	Node *p = m_head;
+	while (p->data != search_char) {
+		p = p->next;
+		ind++;
+	}
+	delete p;
+	return ind;
 }
 
 //find the last occurence of "search_char" in the linked list and return its position. Return -1 if the character is not found.
