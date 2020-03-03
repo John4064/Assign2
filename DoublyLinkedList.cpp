@@ -204,6 +204,17 @@ void DoublyLinkedList::set(int index, char new_value)
 	//..............
 	// TODO
 	//..............
+	Node *p = m_head;
+	if (index == 0) {
+		m_head->data = new_value;
+	}
+	else {
+		for (int i = 0; i < index; i++) {
+			p = p->next;
+		}
+		p->data = new_value;
+	}
+	return;
 }
 
 //find the first occurence of "search char" in the linked list and return its position. Return -1 if the character is not found.
