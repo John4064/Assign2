@@ -160,6 +160,13 @@ void DoublyLinkedList::clear()
     //..............
     // TODO
     //..............
+    Node *p = m_head;
+    while(p != nullptr){
+        p=nullptr;
+        p = p->next;
+    }
+    m_head = nullptr;
+    m_tail = nullptr;
 }
 
 //get a value at a position in the linked list
@@ -168,6 +175,12 @@ char DoublyLinkedList::get(int index) const
     //..............
     // TODO
     //..............
+    Node *p = m_head;
+    for(int i = 0;i<index;i++){
+        p=nullptr;
+        p = p->next;
+    }
+    return p->data;
 }
 
 //modify a value at a position in the linked list
