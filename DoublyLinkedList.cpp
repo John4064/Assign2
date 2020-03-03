@@ -56,15 +56,17 @@ DoublyLinkedList::DoublyLinkedList(const std::string &data_string)
 DoublyLinkedList::~DoublyLinkedList() //destructor
 {
 	//..............
-	// TODO
+	//
 	//..............
+	/*THIS DOESNT WORK
 	Node *p = m_head;
-	while (p != nullptr) {
-		delete p;
+	while (p->next != nullptr) {
 		p = p->next;
+		delete p->previous;
 	}
-	delete m_head;
-	delete m_tail;
+	m_head = nullptr;
+	m_tail = nullptr;
+	*/
 }
 
 //add to to the end of the list
@@ -76,12 +78,11 @@ void DoublyLinkedList::append(char data)
 	Node* temp = new Node(data);
 	if (m_tail == nullptr && m_head == nullptr) {
 		m_head = temp;
-		m_head->next = m_tail;
-		//m_tail->next = m_head; This breaks
+		m_tail = temp;
 	}else {	
 		temp->previous = m_tail;
 		temp->next = nullptr;
-		m_tail->next = temp;//this breaks
+		m_tail->next = temp;
 		m_tail = temp;
 
 		//Setting the header back to the tail
@@ -98,14 +99,21 @@ void DoublyLinkedList::prepend(char data)
 	// TODO
 	//..............
 	Node* temp = new Node(data);
-	//setting the new nodes previous and next
-	temp->previous = m_tail;
-	temp->next = m_head;
-	//old head before points to new
-	m_head->previous = temp;
-	m_head = temp;
-	m_tail->next = m_head;
-}
+	if (m_tail == nullptr && m_head == nullptr) {
+		m_head = temp;
+		m_tail = temp;
+	}else {
+		//setting the new nodes previous and next
+		temp->previous = m_tail;
+		temp->next = m_head;
+		//old head before points to new
+		m_head->previous = temp;
+		m_head = temp;
+		m_tail->next = m_head;
+	}
+	}
+	
+	
 
 //add to the middle of the list (index = 0) means insert at the beginning of the list
 void DoublyLinkedList::insert(int index, char data)
@@ -184,7 +192,6 @@ char DoublyLinkedList::get(int index) const
 	//..............
 	Node *p = m_head;
 	for (int i = 0; i < index; i++) {
-		p = nullptr;
 		p = p->next;
 	}
 	return p->data;
